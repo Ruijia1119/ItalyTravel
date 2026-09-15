@@ -81,7 +81,7 @@ if (days.length) {
   nextButton = pager.querySelector(".next-day");
   todayButton = pager.querySelector(".today-jump");
 
-  days.forEach((day, index) => {
+  days.forEach(day => {
     const date = day.dataset.date;
     const f = formatDay(date);
     const heading = day.querySelector(".day-title h3")?.textContent.trim() || "行程";
@@ -165,6 +165,8 @@ function showDay(date, options = {}) {
     url.hash = "plan";
     history.pushState({}, "", url);
   }
+
+  window.dispatchEvent(new CustomEvent("tripdaychange", { detail: { date, day } }));
 
   if (options.scroll) {
     document.getElementById("plan")?.scrollIntoView({ behavior: "smooth", block: "start" });
