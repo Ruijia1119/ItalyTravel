@@ -13,14 +13,15 @@
 <div id="site-root"></div>
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 <script>
-Promise.all([1,2,3,4].map(i=>fetch(`content-${i}.html`).then(r=>r.text())))
+const SITE_VERSION='20260918-1747';
+Promise.all([1,2,3,4].map(i=>fetch(`content-${i}.html?v=${SITE_VERSION}`, {cache:'no-store'}).then(r=>r.text())))
   .then(parts=>{
     document.getElementById('site-root').innerHTML=parts.join('\n');
     const app=document.createElement('script');
-    app.src='app.js';
+    app.src=`app.js?v=${SITE_VERSION}`;
     app.onload=()=>{
       const map=document.createElement('script');
-      map.src='map.js';
+      map.src=`map.js?v=${SITE_VERSION}`;
       document.body.appendChild(map);
     };
     document.body.appendChild(app);
