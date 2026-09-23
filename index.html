@@ -13,7 +13,7 @@
 <div id="site-root"></div>
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 <script>
-const SITE_VERSION='20260923-2225';
+const SITE_VERSION='20260923-2238';
 Promise.all([1,2,3,4].map(i=>fetch(`content-${i}.html?v=${SITE_VERSION}`, {cache:'no-store'}).then(r=>r.text())))
   .then(parts=>{
     document.getElementById('site-root').innerHTML=parts.join('\n');
